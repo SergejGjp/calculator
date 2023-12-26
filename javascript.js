@@ -5,12 +5,14 @@ const minus = document.getElementById("minus");
 const multiplyOp = document.getElementById("multiply");
 const devideOp = document.getElementById("devide");
 const equal = document.getElementById("equal");
+const zero = document.querySelector(".zero");
 
 clear.addEventListener("click", function() {
     screen.innerHTML = "";
     op = "";
     num1 = 0;
     num2 = 0;
+    console.log(`op = ${op}, num1 = ${num1}, num2 = ${num2}`);
 });
 
 const btns = document.querySelectorAll(".number");
@@ -18,6 +20,14 @@ const btns = document.querySelectorAll(".number");
 for (const btn of btns) {
     btn.addEventListener("click", function() {screen.innerHTML += this.value});
 };
+
+zero.addEventListener("click", function() {
+    if (screen.innerHTML == 0) {
+        screen.innerHTML = 0;
+    } else {
+        screen.innerHTML += 0;
+    };
+});
 
 function add(a, b) {
     let result = a + b
@@ -85,7 +95,14 @@ devideOp.addEventListener("click", function() {
 
 equal.addEventListener("click", function() {
     num2 = +screen.innerHTML;
-    console.log(num2);
-    let result = operate(num1, op, num2);
-    screen.innerHTML = result;
+    if (num2 == 0 && op == "/") {
+        let result = alert("invalid");
+        return result;
+    } else {
+        console.log(num2);
+        let result = operate(num1, op, num2);
+        screen.innerHTML = result;
+    };
 })
+
+// make the operations in the operator button, so that equal only shows result?

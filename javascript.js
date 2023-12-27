@@ -10,7 +10,7 @@ const zero = document.querySelector(".zero");
 clear.addEventListener("click", function() {
     screen.innerHTML = 0;
     op = "";
-    num1 = 0;
+    num1 = 0; //maybe ""
     num2 = 0;
     console.log(`op = ${op}, num1 = ${num1}, num2 = ${num2}`);
 });
@@ -19,21 +19,36 @@ const btns = document.querySelectorAll(".number");
 
 for (const btn of btns) {
     btn.addEventListener("click", function() {
-        if (screen.innerHTML == 0) {
-            screen.innerHTML = this.value;
-        } else {
-            screen.innerHTML += this.value;
-        };
-        if (num1) {
-            screen.innerHTML = 0;
+        if (!op) {  
             if (screen.innerHTML == 0) {
                 screen.innerHTML = this.value;
             } else {
                 screen.innerHTML += this.value;
             };
-            num2 = +screen.innerHTML;
-            console.log(num2);
-        }
+        };
+        // if (num1 == 0) {
+        //     if (screen.innerHTML == 0) {
+        //         screen.innerHTML = this.value;
+        //         num2 = +screen.innerHTML;
+        //     } else {
+        //         screen.innerHTML += this.value;
+        //         num2 = +screen.innerHTML;
+        //         console.log(num2);
+        //     };
+        // };
+        if (num1 && num2) {
+            if (screen.innerHTML == 0) {
+                screen.innerHTML = this.value;
+            } else {
+                screen.innerHTML += this.value;
+                num2 = +screen.innerHTML;
+                console.log(num2);
+            };
+        };  
+        if (num1 && !num2) {
+            screen.innerHTML = this.value;
+            num2 = +screen.innerHTML 
+        };
     });
 };
 
@@ -77,6 +92,7 @@ plus.addEventListener("click", function() {
     if (num1 && num2) {
         let result = operate(num1, op, num2);
         screen.innerHTML = result;
+        num2 = 0;
     };
     op = "+";
     num1 = +screen.innerHTML;
@@ -87,6 +103,7 @@ minus.addEventListener("click", function() {
     if (num1 && num2) {
         let result = operate(num1, op, num2);
         screen.innerHTML = result;
+        num2 = 0;
     };
     op = "-";
     num1 = +screen.innerHTML;
@@ -97,6 +114,7 @@ multiplyOp.addEventListener("click", function() {
     if (num1 && num2) {
         let result = operate(num1, op, num2);
         screen.innerHTML = result;
+        num2 = 0;
     };
     op = "*";
     num1 = +screen.innerHTML;
@@ -111,6 +129,7 @@ devideOp.addEventListener("click", function() {
         };
         let result = operate(num1, op, num2);
         screen.innerHTML = result;
+        num2 = 0;
     };
     op = "/";
     num1 = +screen.innerHTML;
@@ -124,5 +143,6 @@ equal.addEventListener("click", function() {
     } else {
         let result = operate(num1, op, num2);
         screen.innerHTML = result;
+        num2 = 0;
     };
 });

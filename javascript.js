@@ -8,7 +8,7 @@ const equal = document.getElementById("equal");
 const zero = document.querySelector(".zero");
 
 clear.addEventListener("click", function() {
-    screen.innerHTML = "";
+    screen.innerHTML = 0;
     op = "";
     num1 = 0;
     num2 = 0;
@@ -18,16 +18,24 @@ clear.addEventListener("click", function() {
 const btns = document.querySelectorAll(".number");
 
 for (const btn of btns) {
-    btn.addEventListener("click", function() {screen.innerHTML += this.value});
+    btn.addEventListener("click", function() {
+        if (screen.innerHTML == 0) {
+            screen.innerHTML = this.value;
+        } else {
+            screen.innerHTML += this.value;
+        };
+        if (num1) {
+            screen.innerHTML = 0;
+            if (screen.innerHTML == 0) {
+                screen.innerHTML = this.value;
+            } else {
+                screen.innerHTML += this.value;
+            };
+            num2 = +screen.innerHTML;
+            console.log(num2);
+        }
+    });
 };
-
-zero.addEventListener("click", function() {
-    if (screen.innerHTML == 0) {
-        screen.innerHTML = 0;
-    } else {
-        screen.innerHTML += 0;
-    };
-});
 
 function add(a, b) {
     let result = a + b
@@ -66,43 +74,55 @@ function operate(a, op, b) {
 };
 
 plus.addEventListener("click", function() {
+    if (num1 && num2) {
+        let result = operate(num1, op, num2);
+        screen.innerHTML = result;
+    };
     op = "+";
     num1 = +screen.innerHTML;
-    screen.innerHTML = "";
     console.log(num1);
 });
 
 minus.addEventListener("click", function() {
+    if (num1 && num2) {
+        let result = operate(num1, op, num2);
+        screen.innerHTML = result;
+    };
     op = "-";
     num1 = +screen.innerHTML;
-    screen.innerHTML = "";
     console.log(num1);
 });
 
 multiplyOp.addEventListener("click", function() {
+    if (num1 && num2) {
+        let result = operate(num1, op, num2);
+        screen.innerHTML = result;
+    };
     op = "*";
     num1 = +screen.innerHTML;
-    screen.innerHTML = "";
     console.log(num1);
 });
 
 devideOp.addEventListener("click", function() {
+    if (num1 && num2) {
+        if(num2 == 0) {
+            let result = alert("invalid")
+            return result;
+        };
+        let result = operate(num1, op, num2);
+        screen.innerHTML = result;
+    };
     op = "/";
     num1 = +screen.innerHTML;
-    screen.innerHTML = "";
     console.log(num1);
 });
 
 equal.addEventListener("click", function() {
-    num2 = +screen.innerHTML;
     if (num2 == 0 && op == "/") {
         let result = alert("invalid");
         return result;
     } else {
-        console.log(num2);
         let result = operate(num1, op, num2);
         screen.innerHTML = result;
     };
-})
-
-// make the operations in the operator button, so that equal only shows result?
+});

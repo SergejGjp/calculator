@@ -10,8 +10,9 @@ const zero = document.querySelector(".zero");
 clear.addEventListener("click", function() {
     screen.innerHTML = 0;
     op = "";
-    num1 = 0; //maybe ""
-    num2 = 0;
+    num1 = "";
+    num2 = "";
+    result = "";
     console.log(`op = ${op}, num1 = ${num1}, num2 = ${num2}`);
 });
 
@@ -19,62 +20,77 @@ const btns = document.querySelectorAll(".number");
 
 for (const btn of btns) {
     btn.addEventListener("click", function() {
-        if (!op) {  
+        if (num1 === 0) { //check if num2 = "" after clicking operator?
+            if(!num2) { 
+                screen.innerHTML = this.value;
+                num2 = +screen.innerHTML;
+                console.log(`(Z27)num2 = ${num2}`);
+            } else {
+                screen.innerHTML += this.value;
+                num2 = +screen.innerHTML;
+                console.log(`(Z31)num2 = ${num2}`);
+            };
+        };
+        if (result && num2) { //to enter a numer when one operation was already made and first number of num2 was entered
+            screen.innerHTML += this.value;
+            num2 = +screen.innerHTML;
+            console.log(`(Z37)num2 = ${num2}`); 
+        };
+        if (result || result === 0) {
+            if (!num2) {
+                screen.innerHTML = this.value;
+                num2 = +screen.innerHTML;
+                console.log(`(Z43)num2 = ${num2}`); 
+            };    
+        };
+        if (!op) {  //for first input
             if (screen.innerHTML == 0) {
                 screen.innerHTML = this.value;
             } else {
                 screen.innerHTML += this.value;
             };
         };
-        // if (num1 == 0) {
-        //     if (screen.innerHTML == 0) {
-        //         screen.innerHTML = this.value;
-        //         num2 = +screen.innerHTML;
-        //     } else {
-        //         screen.innerHTML += this.value;
-        //         num2 = +screen.innerHTML;
-        //         console.log(num2);
-        //     };
-        // };
-        if (num1 && num2) {
-            if (screen.innerHTML == 0) {
+        if (num1 && num2 && !result) {
+            if (screen.innerHTML == 0) { //need this?
                 screen.innerHTML = this.value;
             } else {
                 screen.innerHTML += this.value;
                 num2 = +screen.innerHTML;
-                console.log(num2);
+                console.log(`(Z59)num2 = ${num2}`);
             };
         };  
-        if (num1 && !num2) {
+        if (num1 && !num2) { // maybe easier if I add "or"
             screen.innerHTML = this.value;
-            num2 = +screen.innerHTML 
+            num2 = +screen.innerHTML;
+            console.log(`(Z65)num2 = ${num2}`); 
         };
     });
 };
 
 function add(a, b) {
-    let result = a + b
+    result = a + b
     return result;
 };
 
 function subtract(a, b) {
-    let result = a - b
+    result = a - b
     return result;
 };
 
 function multiply(a, b) {
-    let result = a * b
+    result = a * b
     return result;
 };
 
 function devide(a, b) {
-    let result = a / b
+    result = a / b
     return result;
 };
 
 let num1;
 let op;
 let num2;
+let result;
 
 function operate(a, op, b) {
     if (op == "+") {
@@ -90,9 +106,9 @@ function operate(a, op, b) {
 
 plus.addEventListener("click", function() {
     if (num1 && num2) {
-        let result = operate(num1, op, num2);
+        result = operate(num1, op, num2);
         screen.innerHTML = result;
-        num2 = 0;
+        num2 = "";
     };
     op = "+";
     num1 = +screen.innerHTML;
@@ -101,9 +117,9 @@ plus.addEventListener("click", function() {
 
 minus.addEventListener("click", function() {
     if (num1 && num2) {
-        let result = operate(num1, op, num2);
+        result = operate(num1, op, num2);
         screen.innerHTML = result;
-        num2 = 0;
+        num2 = "";
     };
     op = "-";
     num1 = +screen.innerHTML;
@@ -112,9 +128,9 @@ minus.addEventListener("click", function() {
 
 multiplyOp.addEventListener("click", function() {
     if (num1 && num2) {
-        let result = operate(num1, op, num2);
+        result = operate(num1, op, num2);
         screen.innerHTML = result;
-        num2 = 0;
+        num2 = "";
     };
     op = "*";
     num1 = +screen.innerHTML;
@@ -123,13 +139,13 @@ multiplyOp.addEventListener("click", function() {
 
 devideOp.addEventListener("click", function() {
     if (num1 && num2) {
-        if(num2 == 0) {
-            let result = alert("invalid")
+        if(num2 === 0) {
+            result = alert("invalid")
             return result;
         };
-        let result = operate(num1, op, num2);
+        result = operate(num1, op, num2);
         screen.innerHTML = result;
-        num2 = 0;
+        num2 = "";
     };
     op = "/";
     num1 = +screen.innerHTML;
@@ -138,11 +154,11 @@ devideOp.addEventListener("click", function() {
 
 equal.addEventListener("click", function() {
     if (num2 == 0 && op == "/") {
-        let result = alert("invalid");
+        result = alert("invalid");
         return result;
     } else {
-        let result = operate(num1, op, num2);
+        result = operate(num1, op, num2);
         screen.innerHTML = result;
-        num2 = 0;
+        num2 = "";
     };
 });

@@ -20,49 +20,34 @@ const btns = document.querySelectorAll(".number");
 
 for (const btn of btns) {
     btn.addEventListener("click", function() {
-        if (num1 === 0) { //check if num2 = "" after clicking operator?
+        if (!op) {  //for first input
+            if (screen.innerHTML == 0) {
+                screen.innerHTML = this.value;
+                console.log("first input")
+            } else {
+                screen.innerHTML += this.value;
+                console.log("second num")
+            };
+        };
+        if (num1 && !num2) {
+            screen.innerHTML = this.value;
+            num2 = +screen.innerHTML;
+            console.log(`(Z65)num2 = ${num2}`); 
+        } else if (num1 && num2){
+            screen.innerHTML += this.value;
+            num2 = +screen.innerHTML;
+            console.log(`(Z59)num2 = ${num2}`);
+        };
+        if (num1 === 0) {
             if(!num2) { 
                 screen.innerHTML = this.value;
                 num2 = +screen.innerHTML;
-                console.log(`(Z27)num2 = ${num2}`);
+                console.log(`(Z27)num2 = ${num2}`); 
             } else {
                 screen.innerHTML += this.value;
                 num2 = +screen.innerHTML;
                 console.log(`(Z31)num2 = ${num2}`);
             };
-        };
-        if (result && num2) { //to enter a numer when one operation was already made and first number of num2 was entered
-            screen.innerHTML += this.value;
-            num2 = +screen.innerHTML;
-            console.log(`(Z37)num2 = ${num2}`); 
-        };
-        if (result || result === 0) {
-            if (!num2) {
-                screen.innerHTML = this.value;
-                num2 = +screen.innerHTML;
-                console.log(`(Z43)num2 = ${num2}`); 
-            };    
-        };
-        if (!op) {  //for first input
-            if (screen.innerHTML == 0) {
-                screen.innerHTML = this.value;
-            } else {
-                screen.innerHTML += this.value;
-            };
-        };
-        if (num1 && num2 && !result) {
-            if (screen.innerHTML == 0) { //need this?
-                screen.innerHTML = this.value;
-            } else {
-                screen.innerHTML += this.value;
-                num2 = +screen.innerHTML;
-                console.log(`(Z59)num2 = ${num2}`);
-            };
-        };  
-        if (num1 && !num2) { // maybe easier if I add "or"
-            screen.innerHTML = this.value;
-            num2 = +screen.innerHTML;
-            console.log(`(Z65)num2 = ${num2}`); 
         };
     });
 };
@@ -109,6 +94,7 @@ plus.addEventListener("click", function() {
         result = operate(num1, op, num2);
         screen.innerHTML = result;
         num2 = "";
+        result = "";
     };
     op = "+";
     num1 = +screen.innerHTML;
@@ -120,6 +106,7 @@ minus.addEventListener("click", function() {
         result = operate(num1, op, num2);
         screen.innerHTML = result;
         num2 = "";
+        result = "";
     };
     op = "-";
     num1 = +screen.innerHTML;
@@ -131,6 +118,7 @@ multiplyOp.addEventListener("click", function() {
         result = operate(num1, op, num2);
         screen.innerHTML = result;
         num2 = "";
+        result = "";
     };
     op = "*";
     num1 = +screen.innerHTML;
@@ -146,6 +134,7 @@ devideOp.addEventListener("click", function() {
         result = operate(num1, op, num2);
         screen.innerHTML = result;
         num2 = "";
+        result = "";
     };
     op = "/";
     num1 = +screen.innerHTML;
@@ -160,5 +149,6 @@ equal.addEventListener("click", function() {
         result = operate(num1, op, num2);
         screen.innerHTML = result;
         num2 = "";
+        result = "";
     };
 });

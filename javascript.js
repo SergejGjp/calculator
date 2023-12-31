@@ -8,7 +8,7 @@ const equal = document.getElementById("equal");
 const zero = document.querySelector(".zero");
 
 clear.addEventListener("click", function() {
-    screen.innerHTML = 0;
+    screen.textContent = 0;
     op = "";
     num1 = "";
     num2 = "";
@@ -21,31 +21,31 @@ const btns = document.querySelectorAll(".number");
 for (const btn of btns) {
     btn.addEventListener("click", function() {
         if (!op) {  //for first input
-            if (screen.innerHTML == 0) {
-                screen.innerHTML = this.value;
+            if (screen.textContent == 0) {
+                screen.textContent = this.value;
                 console.log("first input")
             } else {
-                screen.innerHTML += this.value;
+                screen.textContent += this.value;
                 console.log("second num")
             };
         };
         if (num1 && !num2) {
-            screen.innerHTML = this.value;
-            num2 = +screen.innerHTML;
+            screen.textContent = this.value;
+            num2 = +screen.textContent;
             console.log(`(Z65)num2 = ${num2}`); 
         } else if (num1 && num2){
-            screen.innerHTML += this.value;
-            num2 = +screen.innerHTML;
+            screen.textContent += this.value;
+            num2 = +screen.textContent;
             console.log(`(Z59)num2 = ${num2}`);
         };
         if (num1 === 0) {
             if(!num2) { 
-                screen.innerHTML = this.value;
-                num2 = +screen.innerHTML;
+                screen.textContent = this.value;
+                num2 = +screen.textContent;
                 console.log(`(Z27)num2 = ${num2}`); 
             } else {
-                screen.innerHTML += this.value;
-                num2 = +screen.innerHTML;
+                screen.textContent += this.value;
+                num2 = +screen.textContent;
                 console.log(`(Z31)num2 = ${num2}`);
             };
         };
@@ -92,36 +92,36 @@ function operate(a, op, b) {
 plus.addEventListener("click", function() {
     if (num1 && num2) {
         result = operate(num1, op, num2);
-        screen.innerHTML = result;
+        screen.textContent = result;
         num2 = "";
         result = "";
     };
     op = "+";
-    num1 = +screen.innerHTML;
+    num1 = +screen.textContent;
     console.log(num1);
 });
 
 minus.addEventListener("click", function() {
     if (num1 && num2) {
         result = operate(num1, op, num2);
-        screen.innerHTML = result;
+        screen.textContent = result;
         num2 = "";
         result = "";
     };
     op = "-";
-    num1 = +screen.innerHTML;
+    num1 = +screen.textContent;
     console.log(num1);
 });
 
 multiplyOp.addEventListener("click", function() {
     if (num1 && num2) {
         result = operate(num1, op, num2);
-        screen.innerHTML = result;
+        screen.textContent = result;
         num2 = "";
         result = "";
     };
     op = "*";
-    num1 = +screen.innerHTML;
+    num1 = +screen.textContent;
     console.log(num1);
 });
 
@@ -132,22 +132,27 @@ devideOp.addEventListener("click", function() {
             return result;
         };
         result = operate(num1, op, num2);
-        screen.innerHTML = result;
+        screen.textContent = result;
         num2 = "";
         result = "";
     };
     op = "/";
-    num1 = +screen.innerHTML;
+    num1 = +screen.textContent;
     console.log(num1);
 });
 
 equal.addEventListener("click", function() {
+    if (!num1 && !(num1 === 0)) {
+       result = alert("Please enter a Number!"); 
+       return result;
+    };
     if (num2 == 0 && op == "/") {
         result = alert("invalid");
         return result;
     } else {
         result = operate(num1, op, num2);
-        screen.innerHTML = result;
+        screen.textContent = result;
+        num1 = result;
         num2 = "";
         result = "";
     };

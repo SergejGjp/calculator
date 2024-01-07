@@ -15,8 +15,16 @@
     flex-grow: 1;
 }
 
+.opetator {
+    flex-grow: 1;
+}
+
 .numbers {
     flex-grow: 2;
+}
+
+.numbers .line button {
+    width: 50px;
 }
 
 .line {
@@ -25,22 +33,23 @@
     justify-content: space-between;
 }
 
-.number {
+/* .number {
+    
+} */
+
+/* #ac,
+#negative,
+#percent {
     flex-grow: 1;
-    flex-shrink: 0;
-}
+} */
 
-#ac {
-    flex-grow: 3;
-}
-
-button.number {
+/* button.number {
     flex-grow: 2.42;
-}
+} */
 
-#dot.decimal {
+/* #dot.decimal {
     flex-grow: 1;
-}
+} */
 
 #screen {
     border: 2px solid black;
@@ -54,5 +63,6 @@ button.number {
 button {
     flex-grow: 1;
     min-height: 60px;
+    min-width: 50px;
     margin: 2px;
 }

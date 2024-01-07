@@ -7,6 +7,8 @@ const devideOp = document.getElementById("devide");
 const equal = document.getElementById("equal");
 const zero = document.querySelector(".zero");
 const dot = document.querySelector(".decimal");
+const negativeBtn = document.querySelector("#negative");
+const percentBtn = document.querySelector("#percent");
 
 let num1;
 let op;
@@ -25,6 +27,8 @@ clear.addEventListener("click", function() {
     dot.disabled = false;
     console.log(`op = ${op}, num1 = ${num1}, num2 = ${num2}`);
 });
+
+// what if I add booleans to check if num1 or 2 has been declared
 
 const btns = document.querySelectorAll(".number");
 
@@ -80,6 +84,24 @@ dot.addEventListener("click", function() {
         dot.disabled = true;
     }
 });
+
+negativeBtn.addEventListener("click", function() {
+    if (screen.textContent === "0") {
+        screen.textContent = "0";
+    } else if (!(screen.textContent[0] === "-")) {
+        screen.textContent = `-${screen.textContent}`;
+        if (num1 || num1 === 0) {
+            num2 = +screen.textContent;
+            console.log(`num2 = ${num2}`);
+        };    
+    } else {
+        screen.textContent = screen.textContent.slice(1);
+        if (num1 || num1 === 0) {
+            num2 = +screen.textContent;
+            console.log(`num2 = ${num2}`);
+        };  
+    };
+})
 
 function add(a, b) {
     result = a + b

@@ -143,11 +143,13 @@ plus.addEventListener("click", function() {
         screen.textContent = result;
         num2 = "";
         result = "";
+        dot.disabled = true;
     };
     op = "+";
     num1 = +screen.textContent;
     num2 = "";
     isDecimal = false;
+    dot.disabled = true;
 });
 
 minus.addEventListener("click", function() {
@@ -157,12 +159,13 @@ minus.addEventListener("click", function() {
         num2 = "";
         result = "";
         isDecimal = false;
-        dot.disabled = false;
+        dot.disabled = true;
     };
     op = "-";
     num1 = +screen.textContent;
     num2 = "";
     isDecimal = false;
+    dot.disabled = true;
 });
 
 multiplyOp.addEventListener("click", function() {
@@ -172,11 +175,13 @@ multiplyOp.addEventListener("click", function() {
         num2 = "";
         result = "";
         isDecimal = false;
+        dot.disabled = true;
     };
     op = "*";
     num1 = +screen.textContent;
     num2 = "";
     isDecimal = false;
+    dot.disabled = true;
 });
 
 devideOp.addEventListener("click", function() {
@@ -190,11 +195,13 @@ devideOp.addEventListener("click", function() {
         num2 = "";
         result = "";
         isDecimal = false;
+        dot.disabled = true;
     };
     op = "/";
     num1 = +screen.textContent;
     num2 = "";
     isDecimal = false;
+    dot.disabled = true;
 });
 
 equal.addEventListener("click", function() {

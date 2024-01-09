@@ -25,7 +25,6 @@ clear.addEventListener("click", function() {
     result = "";
     isDecimal = false;
     dot.disabled = false;
-    console.log(`op = ${op}, num1 = ${num1}, num2 = ${num2}`);
 });
 
 // what if I add booleans to check if num1 or 2 has been declared
@@ -37,37 +36,30 @@ for (const btn of btns) {
         if (!op && !isDecimal) {  //for first input
             if (screen.textContent === "0") {
                 screen.textContent = this.value;
-                console.log("first input")
             } else {
                 screen.textContent += this.value;
-                console.log("second num")
             };
         };
         if (isDecimal) {
                 screen.textContent += this.value;
                 num2 = +screen.textContent;
-                console.log("this2")
         };
         if (num1 && !num2 && !isDecimal) {
             screen.textContent = this.value;
              dot.disabled = false;
             num2 = +screen.textContent;
-            console.log(`(Z65)num2 = ${num2}`); 
         } else if (num1 && num2 && !isDecimal){
             screen.textContent += this.value;
             num2 = +screen.textContent;
-            console.log(`(Z59)num2 = ${num2}`);
         };
         if (num1 === 0 && !isDecimal) {
             if(!num2) { 
                 screen.textContent = this.value;
                 num2 = +screen.textContent;
                 dot.disabled = false;
-                console.log(`(Z27)num2 = ${num2}`); 
             } else {
                 screen.textContent += this.value;
                 num2 = +screen.textContent;
-                console.log(`(Z31)num2 = ${num2}`);
             };
         };
     });
@@ -85,6 +77,14 @@ dot.addEventListener("click", function() {
     }
 });
 
+percentBtn.addEventListener("click", function() {
+    let tempNo = Math.round((screen.textContent / 100) * 10000) / 10000;
+    screen.textContent = tempNo;
+    if (num1 || num1 === 0) {
+        num2 = +screen.textContent;
+    };
+})
+
 negativeBtn.addEventListener("click", function() {
     if (screen.textContent === "0") {
         screen.textContent = "0";
@@ -92,13 +92,11 @@ negativeBtn.addEventListener("click", function() {
         screen.textContent = `-${screen.textContent}`;
         if (num1 || num1 === 0) {
             num2 = +screen.textContent;
-            console.log(`num2 = ${num2}`);
         };    
     } else {
         screen.textContent = screen.textContent.slice(1);
         if (num1 || num1 === 0) {
             num2 = +screen.textContent;
-            console.log(`num2 = ${num2}`);
         };  
     };
 })
@@ -150,7 +148,6 @@ plus.addEventListener("click", function() {
     num1 = +screen.textContent;
     num2 = "";
     isDecimal = false;
-    console.log(num1);
 });
 
 minus.addEventListener("click", function() {
@@ -166,7 +163,6 @@ minus.addEventListener("click", function() {
     num1 = +screen.textContent;
     num2 = "";
     isDecimal = false;
-    console.log(num1);
 });
 
 multiplyOp.addEventListener("click", function() {
@@ -181,7 +177,6 @@ multiplyOp.addEventListener("click", function() {
     num1 = +screen.textContent;
     num2 = "";
     isDecimal = false;
-    console.log(num1);
 });
 
 devideOp.addEventListener("click", function() {
@@ -200,7 +195,6 @@ devideOp.addEventListener("click", function() {
     num1 = +screen.textContent;
     num2 = "";
     isDecimal = false;
-    console.log(num1);
 });
 
 equal.addEventListener("click", function() {
@@ -218,5 +212,6 @@ equal.addEventListener("click", function() {
         num2 = "";
         result = "";
         isDecimal = false;
+        dot.disabled = true;
     };
 });

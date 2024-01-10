@@ -1,8 +1,18 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-sizing: border-box;
+    background-color: lightcyan;
+}
+
 .container {
     display: flex;
     flex-direction: column;
     border: solid 2px black;
+    min-width: fit-content;
     max-width: 360px;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: black;
 }
 
 .controls {
@@ -15,6 +25,10 @@
     flex-grow: 1;
 }
 
+.operators button {
+    background-color: orange;
+}
+
 .opetator {
     flex-grow: 1;
 }
@@ -25,6 +39,15 @@
 
 .numbers .line button {
     width: 50px;
+    background-color: slategrey;
+    color: white;
+}
+
+#ac, 
+#negative, 
+#percent {
+    background-color: lightgrey;
+    color: black;
 }
 
 .line {
@@ -33,31 +56,17 @@
     justify-content: space-between;
 }
 
-/* .number {
-    
-} */
-
-/* #ac,
-#negative,
-#percent {
-    flex-grow: 1;
-} */
-
-/* button.number {
-    flex-grow: 2.42;
-} */
-
-/* #dot.decimal {
-    flex-grow: 1;
-} */
-
 #screen {
     border: 2px solid black;
     flex-grow: 1;
-    min-height: 60px;
-    font-size: 40px;
-    margin: 5px;
+    min-height: 80px;
+    font-size: 55px;
+    margin: 5px 0px 5px 0px;
     text-align: right;
+    border-radius: 5px;
+    background-color: lightblue;
+    max-width: 360px;
+    overflow: hidden;
 }
 
 button {
@@ -65,4 +74,17 @@ button {
     min-height: 60px;
     min-width: 50px;
     margin: 2px;
+    border-radius: 5px;
+    font-size: 25px;
+}
+
+button#\30.number {
+    min-width: 65%;
+}
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
 }
